@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styleHome.css" />
+  </head>
+  <body>
+    <div class="header">
+      <nav class="navbar">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="registration.html">Registration</a></li>
+          <li><a href="record.html">Records</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <a href="homePage.html"><button class="home">Name</button></a>
+    </div>
+    <div class="main">
+      <div class="row1">
+        <div class="col1">
+          <img class="image" src="" alt="" />
+          <p class="text"></p>
+        </div>
+        <div class="col1">
+          <img class="image" src="" alt="" />
+          <p class="text"></p>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="col1">
+          <img class="image" src="" alt="" />
+          <p class="text"></p>
+        </div>
+        <div class="col1">
+          <img class="image" src="" alt="" />
+          <p class="text"></p>
+        </div>
+      </div>
+      <div class="row3">
+        <div class="col1">
+          <img class="image" src="" alt="" />
+          <p class="text"></p>
+        </div>
+        <div class="col1">
+          <img class="image" src="" alt="" />
+          <p class="text"></p>
+        </div>
+      </div>
+      <div class="row4">
+        <div class="col1">
+          <img class="image" src="" alt="" height="100%" width="100%" />
+          <p class="text"></p>
+        </div>
+        <div class="col1">
+          <img class="image" src="" alt="" height="100%" width="50%" />
+          <p class="text"></p>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="f1">
+        <h1
+          style="
+            text-align: left;
+            margin-left: 140px;
+            margin-top: 50px;
+            font-size: 50px;
+          "
+        >
+          My News<br />Website
+        </h1>
+      </div>
+      <div class="f2">
+        <div class="a1">
+          <h2 style="margin-top: 60px">Quick Links</h2>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Registration</a></li>
+          </ul>
+        </div>
+        <div class="a2">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Registration</a></li>
+          </ul>
+        </div>
+        <div class="a3">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Registration</a></li>
+          </ul>
+        </div>
+        <div class="a4">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Registration</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="f3">
+        <p>2021-2022 My News Websites All rights reserved</p>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Make API request
+        fetch(
+          "https://newsapi.org/v2/everything?q=tesla&from=2023-06-05&sortBy=publishedAt&apiKey=f7d54802ae9d4e2eb6b90d6e456b63ee"
+        )
+          .then(function (response) {
+            // Parse response as JSON
+            return response.json();
+          })
+          .then(function (data) {
+            // Update div elements with the fetched data
+            var col1Elements = document.getElementsByClassName("col1");
+
+            for (var i = 0; i < col1Elements.length; i++) {
+              var col1 = col1Elements[i];
+              var image = col1.querySelector(".image");
+              var text = col1.querySelector(".text");
+
+              var article = data.articles[i];
+              image.src = article.urlToImage;
+              text.textContent = article.title;
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      });
+    </script>
+  </body>
+</html>
